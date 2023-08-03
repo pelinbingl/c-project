@@ -6,19 +6,19 @@ class Hasta {
 public:
     string ad_soyad;
     int yas;
-    Hasta* next; // Bir sonraki düğüme işaret eden pointer
+    Hasta* next; // Bir sonraki dÃ¼Ã°Ã¼me iÃ¾aret eden pointer
 };
 
 class Doktor {
 public:
-    std::string ad;
-    std::string uzmanlik;
-    Doktor* next; // Bir sonraki düğüme işaret eden pointer
+    string ad;
+    string uzmanlik;
+    Doktor* next; // Bir sonraki dÃ¼Ã°Ã¼me iÃ¾aret eden pointer
 };
 class HastaneOtomasyonu {
 public:
-    Hasta* hastaBas = nullptr;   // Hasta linked list başlangıcı
-    Doktor* doktorBas = nullptr; // Doktor linked list başlangıcı
+    Hasta* hastaBas = nullptr;   // Hasta linked list baÃ¾langÃ½cÃ½
+    Doktor* doktorBas = nullptr; // Doktor linked list baÃ¾langÃ½cÃ½
 
     // Hasta ekleme fonksiyonu
     void hastaEkle(std::string ad, int yas) {
@@ -38,7 +38,7 @@ public:
         doktorBas = yeniDoktor;
     }
 
-    // Hasta listesini yazdırma fonksiyonu
+    // Hasta listesini yazdÃ½rma fonksiyonu
     void hastaListesiYazdir() {
         Hasta* temp = hastaBas;
         while (temp != nullptr) {
@@ -47,7 +47,7 @@ public:
         }
     }
 
-    // Doktor listesini yazdırma fonksiyonu
+    // Doktor listesini yazdÃ½rma fonksiyonu
     void doktorListesiYazdir() {
         Doktor* temp = doktorBas;
         while (temp != nullptr) {
@@ -63,49 +63,49 @@ public:
             }
             temp = temp->next;
         }
-        return nullptr; // Hasta bulunamazsa nullptr döndürülür.
+        return nullptr; // Hasta bulunamazsa nullptr dÃ¶ndÃ¼rÃ¼lÃ¼r.
     }
 
-    // Hasta düzenleme fonksiyonu
+    // Hasta dÃ¼zenleme fonksiyonu
     bool hastaDuzenle(string eskiAd, string yeniAd, int yeniYas) {
         Hasta* hasta = hastaAra(eskiAd);
         if (hasta) {
             hasta->ad_soyad = yeniAd;
             hasta->yas = yeniYas;
-            return true; // Düzenleme başarılı ise true döndürülür.
+            return true; // DÃ¼zenleme baÃ¾arÃ½lÃ½ ise true dÃ¶ndÃ¼rÃ¼lÃ¼r.
         }
-        return false; // Hasta bulunamazsa false döndürülür.
+        return false; // Hasta bulunamazsa false dÃ¶ndÃ¼rÃ¼lÃ¼r.
     }
 
     // Hasta silme fonksiyonu
     bool hastaSil(string ad) {
         if (hastaBas == nullptr) {
-            return false; // Liste boşsa silme işlemi yapılamaz.
+            return false; // Liste boÃ¾sa silme iÃ¾lemi yapÃ½lamaz.
         }
 
-        // İlk düğümü silme durumu
+        // Ãlk dÃ¼Ã°Ã¼mÃ¼ silme durumu
         if (hastaBas->ad_soyad == ad) {
             Hasta* temp = hastaBas;
             hastaBas = hastaBas->next;
             delete temp;
-            return true; // Silme başarılı ise true döndürülür.
+            return true; // Silme baÃ¾arÃ½lÃ½ ise true dÃ¶ndÃ¼rÃ¼lÃ¼r.
         }
 
-        // Diğer düğümleri silme durumu
+        // DiÃ°er dÃ¼Ã°Ã¼mleri silme durumu
         Hasta* prev = hastaBas;
         Hasta* current = hastaBas->next;
         while (current != nullptr) {
             if (current->ad_soyad == ad) {
                 prev->next = current->next;
                 delete current;
-                return true; // Silme başarılı ise true döndürülür.
+                return true; // Silme baÃ¾arÃ½lÃ½ ise true dÃ¶ndÃ¼rÃ¼lÃ¼r.
             }
             prev = current;
             current = current->next;
         }
-        return false; // Hasta bulunamazsa false döndürülür.
+        return false; // Hasta bulunamazsa false dÃ¶ndÃ¼rÃ¼lÃ¼r.
     }
-    // Yıkıcı fonksiyon
+    // YÃ½kÃ½cÃ½ fonksiyon
     ~HastaneOtomasyonu() {
         // Hasta linked list'i temizleme
         Hasta* currentHasta = hastaBas;
